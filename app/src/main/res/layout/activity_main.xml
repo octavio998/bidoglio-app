@@ -49,10 +49,52 @@
         app:layout_constraintTop_toBottomOf="@+id/btnSubir">
 
         <LinearLayout
-            android:id="@+id/layoutInferior"
+            android:id="@+id/layoutPadre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/layoutHijo1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/nombre1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pedro" />
+
+                <TextView
+                    android:id="@+id/monto1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="$54" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/layoutHijo2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/textViews2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Mati" />
+
+                <TextView
+                    android:id="@+id/montoView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="$57" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

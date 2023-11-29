@@ -1,6 +1,8 @@
 package com.example.okins;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,13 +11,13 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 public class MainActivity extends AppCompatActivity {
     private EditText editTextNombre;
     private EditText editTextMonto;
     private Button btnSubir;
     private LinearLayout layoutPadre;
     private int contador = 1;
+    private Button btnRedirect;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         editTextNombre = findViewById(R.id.editTextNombre);
         editTextMonto = findViewById(R.id.editTextMonto);
         btnSubir = findViewById(R.id.btnSubir);
-
+        btnRedirect = findViewById(R.id.btnRedirect);
 
         btnSubir.setOnClickListener(new View.OnClickListener() {
 
@@ -43,7 +45,15 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+            }
+        });
+        btnRedirect.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ResponseActivity.class);
 
+                // Iniciar la nueva actividad
+                startActivity(intent);
+                Log.i("MainActivity", "Valor del EditText");
             }
         });
     }

@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private EditText editTextNombre;
@@ -30,9 +31,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String valorEditTextMonto = editTextMonto.getText().toString();
-                int montoNumerico = Integer.parseInt(valorEditTextMonto);
+
                 String valorEditText = editTextNombre.getText().toString();
-                agregarRegistro(valorEditText, montoNumerico);
+                if (valorEditText.isEmpty() || valorEditTextMonto.isEmpty()) {
+                    // Mostrar un Toast con un mensaje de error
+                    Toast.makeText(MainActivity.this, "Los campos no pueden estar vacíos", Toast.LENGTH_SHORT).show();
+                } else {
+                    int montoNumerico = Integer.parseInt(valorEditTextMonto);
+                    agregarRegistro(valorEditText, montoNumerico);
+                }
+
 
 
 
@@ -67,7 +75,8 @@ public class MainActivity extends AppCompatActivity {
         layoutHijo.setId(View.generateViewId());
         layoutPadre.addView(layoutHijo);
 
-
+        editTextNombre.setText("");
+        editTextMonto.setText("");
         // Mostrar el valor en el Log
         Log.i("MainActivity", "Valor del EditText: " + nombre + monto);
 

@@ -70,7 +70,7 @@
                     android:id="@+id/monto1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="$54" />
+                    android:text="Monto: $54" />
 
             </LinearLayout>
             <LinearLayout
@@ -89,7 +89,7 @@
                     android:id="@+id/montoView2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="$57" />
+                    android:text="Monto: $57" />
 
             </LinearLayout>
 

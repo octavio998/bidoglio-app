@@ -11,6 +11,9 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
     private EditText editTextNombre;
     private EditText editTextMonto;
@@ -18,6 +21,13 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout layoutPadre;
     private int contador = 1;
     private Button btnRedirect;
+    //private ArrayList<EditText> listaMontos;
+    //variables de resultado
+    private Double promedioProductos;
+    private Double totalSinIVA;
+    private Double soloIVA;
+    private Double cantidadProductos;
+    private Double totalCompra;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,12 +62,45 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, ResponseActivity.class);
 
                 // Iniciar la nueva actividad
-                startActivity(intent);
-                Log.i("MainActivity", "Valor del EditText");
+               // startActivity(intent);
+                ArrayList<Double> myList = obtenerMontos(layoutPadre);
+
+                String arrayListAsString = arrayListToString(myList);
+                //prueba de array stringifeado, lo veo bien
+               // System.out.println(arrayListAsString);
+
             }
         });
     }
 
+    private ArrayList<Double> obtenerMontos(LinearLayout layoutPadre) {
+        ArrayList<Double> montos = new ArrayList<>();
+
+        // Iterar sobre los hijos del LinearLayout padre
+        for (int i = 0; i < layoutPadre.getChildCount(); i++) {
+            // Obtener el LinearLayout hijo actual
+            LinearLayout layoutHijo = (LinearLayout) layoutPadre.getChildAt(i);
+
+            // Obtener el segundo TextView del LinearLayout hijo
+            TextView segundoTextView = (TextView) layoutHijo.getChildAt(1);
+
+            // Obtener la cadena del TextView y eliminar el símbolo de dólar
+            String montoString = segundoTextView.getText().toString().replace("Monto: $", "");
+
+            // Convertir la cadena a un valor numérico y agregarlo al ArrayList
+            double monto = Double.parseDouble(montoString);
+            montos.add(monto);
+            Log.d("ValorMontos", "Monto #" + (i + 1) + ": " + monto);
+
+        }
+
+        // Devolver el ArrayList de montos
+        return montos;
+    }
+
+    public static <T> String arrayListToString(ArrayList<T> arrayList) {
+        return arrayList.toString();
+    }
     private void agregarRegistro(String nombre, int monto){
         layoutPadre = findViewById(R.id.layoutPadre);
         LinearLayout layoutHijo = new LinearLayout(this);
